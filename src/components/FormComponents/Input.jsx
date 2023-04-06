@@ -32,12 +32,20 @@ class Input extends Component {
 }
 
 Input.propTypes = {
-  classe: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  classe: PropTypes.string,
+  type: PropTypes.string,
   nameId: PropTypes.string.isRequired,
   datatestid: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]).isRequired,
   onChange: PropTypes.func.isRequired,
+};
+
+Input.defaultProps = {
+  classe: '',
+  type: '',
 };
 
 export default Input;

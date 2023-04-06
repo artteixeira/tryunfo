@@ -6,13 +6,51 @@ class App extends React.Component {
   state = {
     name: '',
     description: '',
-    attr1: '',
-    attr2: '',
-    attr3: '',
+    attr1: '0',
+    attr2: '0',
+    attr3: '0',
     image: '',
-    rare: '',
+    rare: 'normal',
     trunfo: false,
     disableBtn: true,
+    saveCards: [],
+    hasTrunfo: false,
+  };
+
+  HasTrunfo = () => {
+    const { saveCards } = this.state;
+    const result = saveCards.some((element) => element.trunfo);
+    this.setState({
+      hasTrunfo: result,
+    });
+  };
+
+  SavedCard = () => {
+    const { name, description, attr1, attr2,
+      attr3, image, trunfo } = this.state;
+
+    const saved = {
+      name,
+      description,
+      attr1,
+      attr2,
+      attr3,
+      image,
+      trunfo,
+    };
+
+    this.setState((prevState) => ({
+      saveCards: [...prevState.saveCards, saved],
+      name: '',
+      description: '',
+      attr1: '0',
+      attr2: '0',
+      attr3: '0',
+      image: '',
+      rare: 'normal',
+      trunfo: false,
+      disableBtn: true,
+    }), this.HasTrunfo);
   };
 
   disableBtn = () => {
@@ -29,7 +67,6 @@ class App extends React.Component {
     && Number(attr3) >= 0 && Number(attr3) <= maxValueAttr
     && Number(attr1) + Number(attr2) + Number(attr3) <= maxValueSum;
 
-    console.log(Number(attr1) >= 0);
     this.setState({
       disableBtn: !(valNumber && valText),
     });
@@ -45,7 +82,7 @@ class App extends React.Component {
 
   render() {
     const { name, description, attr1, attr2, attr3,
-      image, rare, trunfo, disableBtn } = this.state;
+      image, rare, trunfo, disableBtn, hasTrunfo } = this.state;
     return (
       <div>
         <Form
@@ -59,6 +96,8 @@ class App extends React.Component {
           cardTrunfo={ trunfo }
           onInputChange={ this.HandleChange }
           isSaveButtonDisabled={ disableBtn }
+          onSaveButtonClick={ this.SavedCard }
+          hasTrunfo={ hasTrunfo }
         />
         <Card
           cardName={ name }
