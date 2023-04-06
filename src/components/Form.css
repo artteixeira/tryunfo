@@ -1,0 +1,53 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  font-family: Verdana , Geneva , Tahoma , sans-serif;
+  font-weight: 700;
+  line-height: 150%;
+  padding: 20px 100px;
+}
+
+.name {
+  border-bottom: 2px solid dimgray;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+.description {
+  border-bottom: 2px solid dimgray;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  resize: none;
+}
+
+.form label {
+  color: #3d495c;
+  padding: 3px;
+}
+
+.attr {
+  margin: 10px;
+  width: 70%;
+}
+
+.new-card {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+}
+
+h1 {
+  color: #2fc18c;
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 800;
+  line-height: 29px;
+  text-align: center;
+}
+
+form p {
+  color: #3d495c;
+  text-align: center;
+}
