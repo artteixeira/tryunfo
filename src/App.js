@@ -81,6 +81,15 @@ class App extends React.Component {
     }, this.disableBtn);
   };
 
+  deleteCard = (index) => {
+    const { savedCards: saveCards } = this.state;
+    const result = saveCards;
+    saveCards.splice(index, 1);
+    this.setState({
+      savedCards: result,
+    }, this.HasTrunfo);
+  };
+
   render() {
     const { name, description, attr1, attr2, attr3,
       image, rare, trunfo, disableBtn, hasTrunfo, savedCards } = this.state;
@@ -101,6 +110,7 @@ class App extends React.Component {
           hasTrunfo={ hasTrunfo }
         />
         <Card
+          classe="preview"
           cardName={ name }
           cardDescription={ description }
           cardAttr1={ attr1 }
@@ -112,6 +122,7 @@ class App extends React.Component {
         />
         { savedCards.map((element, index) => (<Card
           key={ index }
+          classe="saved"
           cardName={ element.name }
           cardDescription={ element.description }
           cardAttr1={ element.attr1 }
@@ -120,6 +131,7 @@ class App extends React.Component {
           cardImage={ element.image }
           cardRare={ element.rare }
           cardTrunfo={ element.trunfo }
+          onClickButton={ () => this.deleteCard(index) }
         />)) }
       </div>
     );
