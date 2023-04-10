@@ -1,10 +1,16 @@
-.form {
+form {
   display: flex;
   flex-direction: column;
   font-family: Verdana , Geneva , Tahoma , sans-serif;
   font-weight: 700;
   line-height: 150%;
-  padding: 20px 100px;
+  width: 100%;
+}
+
+form div {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
 }
 
 .name {
@@ -12,6 +18,7 @@
   border-left: none;
   border-right: none;
   border-top: none;
+  margin: 10px;
 }
 
 .description {
@@ -19,32 +26,25 @@
   border-left: none;
   border-right: none;
   border-top: none;
+  margin: 10px;
   resize: none;
 }
 
-.form label {
+form label {
   color: #3d495c;
   padding: 3px;
 }
 
 .attr {
+  align-self: flex-end;
   margin: 10px;
-  width: 70%;
+  width: 75%;
 }
 
 .new-card {
   display: flex;
   flex-direction: column;
   width: 700px;
-}
-
-h1 {
-  color: #2fc18c;
-  font-size: 28px;
-  font-style: italic;
-  font-weight: 800;
-  line-height: 29px;
-  text-align: center;
 }
 
 form p {

@@ -7,12 +7,18 @@ class Card extends Component {
       cardAttr3, cardImage, cardRare, cardTrunfo, classe, onClickButton } = this.props;
     return (
       <div className={ classe }>
-        <p data-testid="name-card">{ cardName }</p>
+
+        <p className="name-card" data-testid="name-card">{ cardName }</p>
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
-        <p data-testid="description-card">{ cardDescription }</p>
-        <p data-testid="attr1-card">{ cardAttr1 }</p>
-        <p data-testid="attr2-card">{ cardAttr2 }</p>
-        <p data-testid="attr3-card">{ cardAttr3 }</p>
+        <p
+          className="description-card"
+          data-testid="description-card"
+        >
+          { cardDescription }
+        </p>
+        <p data-testid="attr1-card">{ `STR: ${cardAttr1}` }</p>
+        <p data-testid="attr2-card">{ `AGI: ${cardAttr2}` }</p>
+        <p data-testid="attr3-card">{ `DEX: ${cardAttr3}` }</p>
         <p data-testid="rare-card">{ cardRare }</p>
         { cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : <p> </p> }
         { classe !== 'preview'

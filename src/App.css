@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+main {
+  display: flex;
+  font-family: Verdana , Geneva , Tahoma , sans-serif;
+  justify-content: space-around;
+}
+
+main h1 {
+  color: #2fc18c;
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 800;
+  line-height: 29px;
+  text-align: center;
+}
+
+.preview, .saved {
+  border: 10px solid #036b52;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+img {
+  height: 300px;
+  width: 100%;
+}
+
+.name-card {
+  background-color: #023031;
+  color: white;
+  font-size: 27.25px;
+  font-style: bold;
+  height: 50px;
+  line-height: 100%;
+  margin: 0;
+}
+
+.description-card {
+  padding: 0 10px;
+  word-wrap: break-word;
+}

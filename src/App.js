@@ -1,6 +1,8 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import Filter from './components/Filter';
+import './App.css';
 
 class App extends React.Component {
   state = {
@@ -15,6 +17,9 @@ class App extends React.Component {
     disableBtn: true,
     savedCards: [],
     hasTrunfo: false,
+    nameFilter: '',
+    rareFilter: 'todas',
+    trunfoFilter: false,
   };
 
   HasTrunfo = () => {
@@ -91,49 +96,70 @@ class App extends React.Component {
   };
 
   render() {
-    const { name, description, attr1, attr2, attr3,
-      image, rare, trunfo, disableBtn, hasTrunfo, savedCards } = this.state;
+    const { name, description, attr1, attr2, attr3, nameFilter,
+      rareFilter, image, rare, trunfo, disableBtn, hasTrunfo,
+      savedCards, trunfoFilter } = this.state;
     return (
-      <div>
-        <Form
-          cardName={ name }
-          cardDescription={ description }
-          cardAttr1={ attr1 }
-          cardAttr2={ attr2 }
-          cardAttr3={ attr3 }
-          cardImage={ image }
-          cardRare={ rare }
-          cardTrunfo={ trunfo }
+      <>
+        <main>
+          <div className="div-form">
+            <h1>ADICIONE NOVA CARTA</h1>
+            <Form
+              cardName={ name }
+              cardDescription={ description }
+              cardAttr1={ attr1 }
+              cardAttr2={ attr2 }
+              cardAttr3={ attr3 }
+              cardImage={ image }
+              cardRare={ rare }
+              cardTrunfo={ trunfo }
+              onInputChange={ this.HandleChange }
+              isSaveButtonDisabled={ disableBtn }
+              onSaveButtonClick={ this.SaveCard }
+              hasTrunfo={ hasTrunfo }
+            />
+          </div>
+          <div className="div-preview">
+            <h1>PRÉ-VIZUALICAÇÃO</h1>
+            <Card
+              classe="preview"
+              cardName={ name }
+              cardDescription={ description }
+              cardAttr1={ attr1 }
+              cardAttr2={ attr2 }
+              cardAttr3={ attr3 }
+              cardImage={ image }
+              cardRare={ rare }
+              cardTrunfo={ trunfo }
+            />
+          </div>
+
+        </main>
+        <Filter
+          nameFilter={ nameFilter }
+          rareFilter={ rareFilter }
+          trunfoFilter={ trunfoFilter }
           onInputChange={ this.HandleChange }
-          isSaveButtonDisabled={ disableBtn }
-          onSaveButtonClick={ this.SaveCard }
-          hasTrunfo={ hasTrunfo }
         />
-        <Card
-          classe="preview"
-          cardName={ name }
-          cardDescription={ description }
-          cardAttr1={ attr1 }
-          cardAttr2={ attr2 }
-          cardAttr3={ attr3 }
-          cardImage={ image }
-          cardRare={ rare }
-          cardTrunfo={ trunfo }
-        />
-        { savedCards.map((element, index) => (<Card
-          key={ index }
-          classe="saved"
-          cardName={ element.name }
-          cardDescription={ element.description }
-          cardAttr1={ element.attr1 }
-          cardAttr2={ element.attr2 }
-          cardAttr3={ element.attr3 }
-          cardImage={ element.image }
-          cardRare={ element.rare }
-          cardTrunfo={ element.trunfo }
-          onClickButton={ () => this.deleteCard(index) }
-        />)) }
-      </div>
+        { savedCards
+          .filter((element) => (element.name.toLowerCase()
+            .includes(nameFilter.toLowerCase())))
+          .filter((element) => (rareFilter === 'todas' || element.rare === rareFilter))
+          .filter((element) => (trunfoFilter ? element.trunfo : true))
+          .map((element, index) => (<Card
+            key={ index }
+            classe="saved"
+            cardName={ element.name }
+            cardDescription={ element.description }
+            cardAttr1={ element.attr1 }
+            cardAttr2={ element.attr2 }
+            cardAttr3={ element.attr3 }
+            cardImage={ element.image }
+            cardRare={ element.rare }
+            cardTrunfo={ element.trunfo }
+            onClickButton={ () => this.deleteCard(index) }
+          />)) }
+      </>
     );
   }
 }

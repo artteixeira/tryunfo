@@ -9,8 +9,9 @@ class Form extends Component {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo, hasTrunfo,
       isSaveButtonDisabled, onInputChange, onSaveButtonClick } = this.props;
+    const maxValueSum = 210;
     return (
-      <form className="form">
+      <form>
         <label htmlFor="name">Nome</label>
         <Input
           datatestid="name-input"
@@ -23,7 +24,7 @@ class Form extends Component {
         <label htmlFor="description">Descrição</label>
         <TextArea value={ cardDescription } onChange={ onInputChange } />
         <label htmlFor="attr1">
-          Atributo 1
+          STR:
           <Input
             datatestid="attr1-input"
             classe="attr"
@@ -34,7 +35,7 @@ class Form extends Component {
           />
         </label>
         <label htmlFor="attr2">
-          Atributo 2
+          AGI:
           <Input
             datatestid="attr2-input"
             classe="attr"
@@ -45,7 +46,7 @@ class Form extends Component {
           />
         </label>
         <label htmlFor="attr3">
-          Atributo 3
+          DEX:
           <Input
             datatestid="attr3-input"
             classe="attr"
@@ -58,7 +59,10 @@ class Form extends Component {
         <p>
           Pontos restantes =
           {' '}
-          <span>000</span>
+          <span>
+            {maxValueSum
+            - (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3))}
+          </span>
         </p>
         <label htmlFor="image">
           Imagem
@@ -74,7 +78,7 @@ class Form extends Component {
         <label htmlFor="rare">Raridade:</label>
         <select
           data-testid="rare-input"
-          id="are"
+          id="rare"
           name="rare"
           value={ cardRare }
           onChange={ onInputChange }
@@ -83,28 +87,30 @@ class Form extends Component {
           <option value="raro">Raro</option>
           <option value="muito raro">Muito Raro</option>
         </select>
-        { hasTrunfo
-          ? <p>Você já tem um Super Trunfo em seu baralho</p>
-          : (
-            <label htmlFor="trunfo">
-              <Input
-                datatestid="trunfo-input"
-                type="checkbox"
-                nameId="trunfo"
-                value={ cardTrunfo }
-                onChange={ onInputChange }
-              />
-              {' '}
-              Super Trybe Trunfo
-            </label>) }
-        <button
-          data-testid="save-button"
-          disabled={ isSaveButtonDisabled }
-          onClick={ onSaveButtonClick }
-        >
-          Salvar
+        <div>
+          { hasTrunfo
+            ? <p>Você já tem um Super Trunfo em seu baralho</p>
+            : (
+              <label htmlFor="trunfo">
+                <Input
+                  datatestid="trunfo-input"
+                  type="checkbox"
+                  nameId="trunfo"
+                  value={ cardTrunfo }
+                  onChange={ onInputChange }
+                />
+                {' '}
+                Super Trybe Trunfo
+              </label>) }
+          <button
+            data-testid="save-button"
+            disabled={ isSaveButtonDisabled }
+            onClick={ onSaveButtonClick }
+          >
+            Salvar
 
-        </button>
+          </button>
+        </div>
       </form>
     );
   }
