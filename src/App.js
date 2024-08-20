@@ -120,7 +120,7 @@ class App extends React.Component {
             />
           </div>
           <div className="div-preview">
-            <h1>PRÉ-VIZUALICAÇÃO</h1>
+            <h1>PRÉ-VIZUALIZAÇÃO</h1>
             <Card
               classe="preview"
               cardName={ name }

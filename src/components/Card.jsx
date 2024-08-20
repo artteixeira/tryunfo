@@ -20,7 +20,7 @@ class Card extends Component {
         <p data-testid="attr2-card">{ `AGI: ${cardAttr2}` }</p>
         <p data-testid="attr3-card">{ `DEX: ${cardAttr3}` }</p>
         <p data-testid="rare-card">{ cardRare }</p>
-        { cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : <p> </p> }
+        { cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : true }
         { classe !== 'preview'
           ? (
             <button
@@ -30,7 +30,7 @@ class Card extends Component {
             >
               Excluir
             </button>)
-          : <p> </p> }
+          : true}
       </div>
     );
   }
